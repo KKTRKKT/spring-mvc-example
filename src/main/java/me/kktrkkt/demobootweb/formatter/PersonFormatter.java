@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb;
+package me.kktrkkt.demobootweb.formatter;
 
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;

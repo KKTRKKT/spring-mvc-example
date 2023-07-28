@@ -1,13 +1,12 @@
-package me.kktrkkt.demobootweb;
+package me.kktrkkt.demobootweb.formatter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoBootWebApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoBootWebApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
-
 }
