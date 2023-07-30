@@ -14,4 +14,11 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    // xml <-> 객체 변환 빈 등록
+    @Bean
+    public Jaxb2Marshaller marshaller() {
+        Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+        jaxb2Marshaller.setPackagesToScan(Sample.class.getPackageName());
+        return jaxb2Marshaller;
+    }
 }

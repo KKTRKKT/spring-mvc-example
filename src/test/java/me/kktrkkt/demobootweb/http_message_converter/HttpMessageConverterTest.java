@@ -58,4 +58,26 @@ class HttpMessageConverterTest {
                 .andExpect(jsonPath("$.contents").value("contents"))
                 .andDo(print());
     }
+
+    @Test
+    void xmlMessageConverter() throws Exception {
+        Sample sample = new Sample();
+        sample.setTitle("sample");
+        sample.setContents("contents");
+
+        StringWriter stringWriter = new StringWriter();
+        Result result = new StreamResult(stringWriter);
+        marshaller.marshal(sample, result);
+        String sampleXml = stringWriter.toString();
+
+        this.mockMvc.perform(get("/sample")
+                        .param("json", "")
+                        .contentType(MediaType.APPLICATION_XML)
+                        .accept(MediaType.APPLICATION_XML)
+                        .content(sampleXml))
+                .andExpect(status().isOk())
+                .andExpect(xpath("sample/title").string("sample"))
+                .andExpect(xpath("sample/contents").string("contents"))
+                .andDo(print());
+    }
 }
