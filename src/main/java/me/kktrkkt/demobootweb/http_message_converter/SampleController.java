@@ -9,4 +9,9 @@ public class SampleController {
     public String getSample(@RequestBody String message) {
         return message;
     }
+
+    @GetMapping(value = "/sample", params = "json")
+    public Sample getSample(@RequestBody Sample sample) {
+        return sample;
+    }
 }

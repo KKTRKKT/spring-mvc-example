@@ -41,4 +41,21 @@ class HttpMessageConverterTest {
                 .andExpect(content().string(hello))
                 .andDo(print());
     }
+
+    @Test
+    void jsonMessageConverter() throws Exception {
+        Sample sample = new Sample();
+        sample.setTitle("sample");
+        sample.setContents("contents");
+        String sampleJson = objectMapper.writeValueAsString(sample);
+        this.mockMvc.perform(get("/sample")
+                    .param("json", "")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .content(sampleJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.title").value("sample"))
+                .andExpect(jsonPath("$.contents").value("contents"))
+                .andDo(print());
+    }
 }
