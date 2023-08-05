@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.http_message_converter;
+package me.kktrkkt.demobootweb.request_mapping.http_message_converter;
 
 /*
 HTTP 메세지 컨버터는 요청 본문의 메세지를 읽어들이거나, 응답 본문에 메세지를 작성할때 사용한다.

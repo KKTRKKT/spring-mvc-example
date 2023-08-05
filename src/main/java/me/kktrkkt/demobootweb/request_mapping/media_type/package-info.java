@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.media_type;
+package me.kktrkkt.demobootweb.request_mapping.media_type;
 
 
 /*

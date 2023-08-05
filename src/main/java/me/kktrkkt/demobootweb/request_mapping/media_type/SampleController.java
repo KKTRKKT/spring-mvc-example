@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.media_type;
+package me.kktrkkt.demobootweb.request_mapping.media_type;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

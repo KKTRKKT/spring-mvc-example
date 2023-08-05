@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.uri_pattern;
+package me.kktrkkt.demobootweb.request_mapping.media_type;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

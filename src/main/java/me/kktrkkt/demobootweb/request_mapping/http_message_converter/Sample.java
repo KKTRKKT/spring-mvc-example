@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.http_message_converter;
+package me.kktrkkt.demobootweb.request_mapping.http_message_converter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

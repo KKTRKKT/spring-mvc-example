@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.uri_pattern;
+package me.kktrkkt.demobootweb.request_mapping.uri_pattern;
 
 /*
 

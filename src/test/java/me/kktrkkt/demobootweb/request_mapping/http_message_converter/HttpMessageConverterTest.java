@@ -1,9 +1,6 @@
-package me.kktrkkt.demobootweb.http_message_converter;
+package me.kktrkkt.demobootweb.request_mapping.http_message_converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jayway.jsonpath.spi.json.GsonJsonProvider;
-import jdk.jfr.ContentType;
-import org.apache.tomcat.util.json.JSONParser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
