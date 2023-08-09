@@ -24,7 +24,7 @@ public class SampleController {
 
     @GetMapping("/view/sample/string")
     public String getSampleString() {
-        return "/view/sample";
+        return "view/sample";
     }
 
     @GetMapping("/view/sample/view")
@@ -32,7 +32,7 @@ public class SampleController {
         return viewResolver.resolveViewName("view/sample", locale);
     }
 
-    @GetMapping("/view/sample/model")
+    @GetMapping("/view/sample")
     public Model getSampleModel(Model model) throws Exception {
         model.addAttribute("attribute", "attribute");
         return model;

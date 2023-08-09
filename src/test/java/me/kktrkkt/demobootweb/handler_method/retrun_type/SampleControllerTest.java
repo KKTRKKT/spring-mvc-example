@@ -10,8 +10,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest
 class SampleControllerTest {
@@ -32,6 +31,23 @@ class SampleControllerTest {
         this.mockMvc.perform(get("/view/sample/string"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(Matchers.containsStringIgnoringCase("<h1>Hello Sample</h1>")))
+                .andDo(print());
+    }
+
+    @Test
+    void getSampleView() throws Exception {
+        this.mockMvc.perform(get("/view/sample/view"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsStringIgnoringCase("<h1>Hello Sample</h1>")))
+                .andDo(print());
+    }
+
+    @Test
+    void getSampleModel() throws Exception {
+        this.mockMvc.perform(get("/view/sample"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsStringIgnoringCase("<h1>Hello Sample</h1>")))
+                .andExpect(model().attribute("attribute", "attribute"))
                 .andDo(print());
     }
 }
