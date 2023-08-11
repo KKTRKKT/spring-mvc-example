@@ -32,16 +32,13 @@ class SampleControllerTest {
 
     @Test
     void postEvents() throws Exception {
-        Event event = new Event();
-        event.setName("new event");
-        event.setLimit(100);
-
         this.mockMvc.perform(post("/events")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("name", event.getName())
-                        .param("limit", String.valueOf(event.getLimit())))
-                .andExpect(status().isCreated())
-                .andExpect(content().string(event.toString()))
+                        .param("name", "new event")
+                        .param("limit", "100"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("new event"))
+                .andExpect(jsonPath("$.limit").value(100))
                 .andDo(print());
     }
 }

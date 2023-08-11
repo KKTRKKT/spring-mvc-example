@@ -1,24 +1,33 @@
 package me.kktrkkt.demobootweb.handler_method.form_submit;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.net.URI;
 
 @Controller
 public class SampleController {
 
     @GetMapping("/events/form")
     public String getEventsForm(Model model) {
-        model.addAttribute("event", new Event());
+        Event attributeValue = new Event();
+        attributeValue.setLimit(100);
+        attributeValue.setName("name");
+        model.addAttribute("event", attributeValue);
         return "event/form";
     }
 
-    @PostMapping(value = "/events", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public Event postEvents(@RequestBody Event event){
+    @PostMapping(value = "/events")
+    @ResponseBody
+    public Event postEvents(@RequestParam String name,
+                            @RequestParam int limit){
+        Event event = new Event();
+        event.setName(name);
+        event.setLimit(limit);
         return event;
     }
 

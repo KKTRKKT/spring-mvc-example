@@ -6,9 +6,9 @@
 </head>
 <body>
 <form action="#" th:action="@{/events}" method="post" th:object="${event}">
-    <input type="text" title="name" th:filed="*{name}" />
-    <input type="text" title="limit" th:filed="*{limit}" />
-    <input type="button" value="Create" />
+    <input type="text" name="name" th:value="*{name}" />
+    <input type="text" name="limit" th:value="*{limit}" />
+    <input type="submit" value="Create" />
 </form>
 </body>
 </html>
