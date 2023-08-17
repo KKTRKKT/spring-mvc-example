@@ -1,11 +1,14 @@
 package me.kktrkkt.demobootweb.handler_method.form_submit;
 
+import javax.validation.constraints.Min;
+
 public class Event {
 
     private Long id;
 
     private String name;
 
+    @Min(0)
     private int limit;
 
     public Long getId() {

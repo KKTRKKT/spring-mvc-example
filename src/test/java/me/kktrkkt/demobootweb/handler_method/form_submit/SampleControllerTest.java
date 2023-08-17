@@ -41,4 +41,48 @@ class SampleControllerTest {
                 .andExpect(jsonPath("$.limit").value(100))
                 .andDo(print());
     }
+
+    @Test
+    void postEventsModel() throws Exception {
+        this.mockMvc.perform(post("/events/model")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "new event")
+                        .param("limit", "100"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("new event"))
+                .andExpect(jsonPath("$.limit").value(100))
+                .andDo(print());
+    }
+
+    @Test
+    void postEventsModelBadRequest() throws Exception {
+        this.mockMvc.perform(post("/events/model")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "new event")
+                        .param("limit", "string")) // number를 주지 않을경우 실패
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
+
+    @Test
+    void postEventsBR() throws Exception {
+        this.mockMvc.perform(post("/events/br")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "new event")
+                        .param("limit", "string")) // number를 주지 않을경우 실패
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("new event"))
+                .andExpect(jsonPath("$.limit").value("0"))
+                .andDo(print());
+    }
+
+    @Test
+    void postEventsValid() throws Exception {
+        this.mockMvc.perform(post("/events/valid")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "new event")
+                        .param("limit", "-10")) // 검증
+                .andExpect(status().isBadRequest())
+                .andDo(print());
+    }
 }
