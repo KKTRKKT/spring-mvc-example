@@ -85,4 +85,16 @@ class SampleControllerTest {
                 .andExpect(status().isBadRequest())
                 .andDo(print());
     }
+
+    @Test
+    void postEventsValidated() throws Exception {
+        this.mockMvc.perform(post("/events/validated")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "new event")
+                        .param("limit", "-10")) // name만 검증하기 때문에 성공
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("new event"))
+                .andExpect(jsonPath("$.limit").value("-10"))
+                .andDo(print());
+    }
 }

@@ -3,6 +3,7 @@ package me.kktrkkt.demobootweb.handler_method.form_submit;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,6 +54,14 @@ public class SampleController {
     @PostMapping(value = "/events/valid")
     @ResponseBody
     public Event postEventsValid(@Valid @ModelAttribute Event event){
+        return event;
+    }
+
+    // spring에서 제공하는 검증으로 그룹을 지정해서 검증할 수 있다.
+    // name만 검증
+    @PostMapping(value = "/events/validated")
+    @ResponseBody
+    public Event postEventsValidated(@Validated(Event.NameValidation.class) @ModelAttribute Event event){
         return event;
     }
 

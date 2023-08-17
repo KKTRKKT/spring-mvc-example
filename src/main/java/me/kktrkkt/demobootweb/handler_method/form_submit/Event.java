@@ -1,14 +1,20 @@
 package me.kktrkkt.demobootweb.handler_method.form_submit;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 public class Event {
 
+    interface NameValidation{};
+
+    interface LimitValidation{};
+
     private Long id;
 
+    @NotBlank(groups = NameValidation.class)
     private String name;
 
-    @Min(0)
+    @Min(value = 0, groups = LimitValidation.class)
     private int limit;
 
     public Long getId() {
