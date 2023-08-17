@@ -7,6 +7,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Controller
 public class SampleController {
@@ -63,6 +65,15 @@ public class SampleController {
     @ResponseBody
     public Event postEventsValidated(@Validated(Event.NameValidation.class) @ModelAttribute Event event){
         return event;
+    }
+
+    @PostMapping(value = "/events/error-handle")
+    public String postEventsErrorHandle(@Validated(Event.LimitValidation.class) @ModelAttribute Event event, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach(System.out::println);
+            return "event/form";
+        }
+        return "event/list";
     }
 
 }

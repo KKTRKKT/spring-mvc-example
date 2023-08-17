@@ -5,7 +5,9 @@
     <title>Create New Form</title>
 </head>
 <body>
-<form action="#" th:action="@{/events}" method="post" th:object="${event}">
+<form action="#" th:action="@{/events/error-handle}" method="post" th:object="${event}">
+    <p th:if="${#fields.hasErrors('limit')}" th:errors="*{limit}">Incorrect date</p>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
     <input type="text" name="name" th:value="*{name}" />
     <input type="text" name="limit" th:value="*{limit}" />
     <input type="submit" value="Create" />

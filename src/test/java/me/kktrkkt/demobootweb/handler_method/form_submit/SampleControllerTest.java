@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.servlet.ModelAndView;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -95,6 +97,17 @@ class SampleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("new event"))
                 .andExpect(jsonPath("$.limit").value("-10"))
+                .andDo(print());
+    }
+
+    @Test
+    void postEventsErrorHandle() throws Exception {
+        ResultActions result = this.mockMvc.perform(post("/events/error-handle")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("name", "new event")
+                        .param("limit", "-10"))
+                .andExpect(status().isOk())
+                .andExpect(model().hasErrors())
                 .andDo(print());
     }
 }
