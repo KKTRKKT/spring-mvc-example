@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.servlet.ModelAndView;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.contains;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -108,6 +109,14 @@ class SampleControllerTest {
                         .param("limit", "-10"))
                 .andExpect(status().isOk())
                 .andExpect(model().hasErrors())
+                .andDo(print());
+    }
+
+    @Test
+    void getEvents() throws Exception {
+        this.mockMvc.perform(get("/events"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("Create New Event")))
                 .andDo(print());
     }
 }

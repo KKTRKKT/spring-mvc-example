@@ -5,10 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Controller
 public class SampleController {
@@ -68,11 +68,23 @@ public class SampleController {
     }
 
     @PostMapping(value = "/events/error-handle")
-    public String postEventsErrorHandle(@Validated(Event.LimitValidation.class) @ModelAttribute Event event, BindingResult bindingResult){
+    public String postEventsErrorHandle(
+            @Validated(Event.LimitValidation.class) @ModelAttribute Event event,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes){
         if(bindingResult.hasErrors()){
             bindingResult.getAllErrors().forEach(System.out::println);
             return "event/form";
         }
+
+        List<Event> eventList = List.of(event);
+        redirectAttributes.addFlashAttribute(eventList);
+
+        return "redirect:/events";
+    }
+
+    @GetMapping("/events")
+    public String getEvents(Model model) {
         return "event/list";
     }
 
