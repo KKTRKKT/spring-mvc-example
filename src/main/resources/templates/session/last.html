@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Form</title>
+</head>
+<body>
+<a th:href="@{/form1}">Create New Event</a>
+<p th:text="${event.Name}">Event Name</p>
+<p th:text="${event.Limit}">Event Limit</p>
+</body>
+</html>
