@@ -84,7 +84,7 @@ public class SampleController {
     }
 
     @GetMapping("/events")
-    public String getEvents(Model model) {
+    public String getEvents() {
         return "event/list";
     }
 
