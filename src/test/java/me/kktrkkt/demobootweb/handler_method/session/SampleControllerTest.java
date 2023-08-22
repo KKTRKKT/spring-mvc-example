@@ -32,7 +32,7 @@ class SampleControllerTest {
         this.mockMvc.perform(get("/session-attributes"))
                 .andExpect(status().isOk())
                 .andExpect(request().sessionAttribute("hi", "bye"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("hi"))
+                .andExpect(model().attributeExists("hi"))
                 .andDo(print());
     }
 }
