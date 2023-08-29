@@ -1,4 +1,4 @@
-package me.kktrkkt.demobootweb.multipart_file;
+package me.kktrkkt.demobootweb.handler_method.multipart_file;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
