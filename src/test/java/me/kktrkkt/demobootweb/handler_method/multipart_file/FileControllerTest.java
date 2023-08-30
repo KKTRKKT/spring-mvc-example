@@ -19,7 +19,7 @@ class FileControllerTest {
     private MockMvc mockMvc;
 
     @Test
-    void getFiles() throws Exception {
+    void upload() throws Exception {
         MockMultipartFile mockMultipartFile = new MockMultipartFile(
                 "file",
                 "file.txt",
