@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>me.kktrkkt</groupId>
-    <artifactId>demo-boot-web</artifactId>
+    <artifactId>spring-mvc-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>demo-boot-web</name>
-    <description>demo-boot-web</description>
+    <name>spring-mvc-example</name>
+    <description>spring-mvc-example</description>
     <properties>
         <java.version>11</java.version>
     </properties>
